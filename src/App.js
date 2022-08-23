@@ -1,26 +1,32 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+export default function App() {
+  const [contain, setContain] = useState([]);
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': 'b17ea89733msh92a5bbff3f3f518p138afbjsn2b1007c93b44',
+      'X-RapidAPI-Host': 'premium-anime-mobile-wallpapers-illustrations.p.rapidapi.com'
+    }
+  };
 
+  fetch('https://premium-anime-mobile-wallpapers-illustrations.p.rapidapi.com/rapidHandler/recent?page=0&sensitivity=0&quality=1', options)
+    .then(response => response.json())
+    .then(data => setContain(data[1].arturl))
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+  
+      return (
+      <div className="App">
+        {contain.map((data) => {
+          return (
+            <div>
+              {data}
+            </div>
+          )
+        })}
+      </div>
+      )
+  }
