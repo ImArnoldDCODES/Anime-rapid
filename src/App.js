@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './App.css';
 
-
 export default function App() {
   const [contain, setContain] = useState([]);
   const options = {
@@ -17,16 +16,16 @@ export default function App() {
     .then(data => setContain(data[1].arturl))
     .then(response => console.log(response))
     .catch(err => console.error(err));
-  
-      return (
-      <div className="App">
-        {contain.map((data) => {
-          return (
-            <div>
-              {data}
-            </div>
-          )
-        })}
-      </div>
-      )
-  }
+
+  return (
+    <div className="App">
+      {contain.map((data) => {
+        return (
+          <div>
+            {data}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
